@@ -1,0 +1,49 @@
+# docker-compose.yml
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+    networks:
+      - satc-network
+
+  opcua_server:
+    build:
+      context: .
+      dockerfile: Dockerfile_opcua
+    ports:
+      - "4840:4840"
+    networks:
+      - satc-network
+
+  db:
+    image: postgres:latest
+    ports:
+      - "54321:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - satc-network
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+
+
+  adminer:
+    image: adminer
+    ports:
+      - "8085:8080"
+    networks:
+      - satc-network
+
+networks:
+  satc-network:
+    driver: bridge

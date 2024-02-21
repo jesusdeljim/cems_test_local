@@ -1,0 +1,14 @@
+# Dockerfile_opcua
+FROM python:3.10.12-slim
+
+COPY requirements.txt /requirements.txt
+COPY opcua_server.py /
+
+# Instala las dependencias necesarias para el servidor OPC UA
+RUN pip install --no-cache-dir -r /requirements.txt
+
+# Expone el puerto 4840 para el servidor OPC UA
+EXPOSE 4840
+
+# Comando para ejecutar el servidor OPC UA al iniciar el contenedor
+CMD ["python", "/opcua_server.py"]
