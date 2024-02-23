@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATC Frontend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Sistema de Adquisicion, Tratamiento y Comunicación de Datos</h1>
+    <!-- Aquí irán más elementos de tu interfaz de usuario -->
+    <script src="app.js"></script>
+
+    <div class="sidebar">
+        <a href="#" id="add-machine">Añadir nueva máquina</a>
+        <!-- Más opciones aquí -->
+    </div>
+
+    <div class="content">
+        <form id="add-machine-form" style="display:none;">
+            <input type="text" id="nombre" placeholder="Nombre de la máquina" required>
+            <input type="text" id="ubicacion" placeholder="Ubicación" required>
+            <textarea id="descripcion" placeholder="Descripción"></textarea>
+            <button type="submit">Guardar máquina</button>
+        </form>
+
+    </div>
+</body>
+</html>
