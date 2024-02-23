@@ -36,14 +36,18 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
 
-
   adminer:
     image: adminer
     ports:
       - "8085:8080"
     networks:
       - satc-network
-
+  frontend:
+    build: ../satc-frontend
+    ports:
+      - "80:80"
+    networks:
+      - satc-network
 networks:
   satc-network:
     driver: bridge

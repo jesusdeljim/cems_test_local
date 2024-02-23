@@ -2,7 +2,7 @@ import psycopg2
 
 # Configura los parámetros de conexión a la base de datos
 db_config = {
-    'host': 'localhost',
+    'host': '172.18.0.6', #Ip del contenedor de la base de datos
     'port': '54321',
     'database': 'satc_database',
     'user': 'root',

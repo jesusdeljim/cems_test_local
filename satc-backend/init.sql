@@ -4,14 +4,32 @@ CREATE DATABASE satc_database;
 -- Conectar a la base de datos
 \c satc_database;
 
+
+-- Tabla para las máquinas
+CREATE TABLE maquina (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255),
+    ubicacion VARCHAR(255),
+    descripcion TEXT,
+    sensores INTEGER[]  -- Lista de IDs de los sensores asociados con la máquina
+);
+
+-- Tabla para los sensores
+CREATE TABLE sensor (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255),
+    tipo VARCHAR(255),
+    unidad_medida VARCHAR(50),
+    maquina_id INTEGER REFERENCES maquina(id)
+);
 -- Tabla para almacenar los datos adquiridos
 CREATE TABLE datos_adquiridos (
     id SERIAL PRIMARY KEY,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     variable VARCHAR(255),
     valor NUMERIC,
-    sensor_id INTEGER REFERENCES sensores(id),
-    maquina_id INTEGER REFERENCES maquinas(id)
+    sensor_id INTEGER REFERENCES sensor(id),
+    maquina_id INTEGER REFERENCES maquina(id)
 );
 
 -- Tabla para configuraciones
@@ -29,22 +47,8 @@ CREATE TABLE registros_alarmas (
     mensaje TEXT
 );
 
--- Tabla para las máquinas
-CREATE TABLE maquinas (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    descripcion TEXT,
-    ubicacion VARCHAR(255)
-);
 
--- Tabla para los sensores
-CREATE TABLE sensores (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
-    tipo VARCHAR(255),
-    unidad_medida VARCHAR(50),
-    maquina_id INTEGER REFERENCES maquinas(id)
-);
+
 
 -- Otras tablas adicionales pueden ser añadidas aquí según sea necesario
 -- CREATE TABLE ...

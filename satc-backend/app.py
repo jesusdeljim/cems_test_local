@@ -1,5 +1,7 @@
-from quart import Quart, jsonify
+from quart import Quart, jsonify, request
 from opcua_client import connect_to_sam, disconnect_from_sam, read_data_from_sam
+import asyncpg
+from db_connect import db_config
 
 app = Quart(__name__)
 
@@ -20,6 +22,18 @@ async def read_data():
     else:
         print("No se pudo conectar al SAM")  # Impresión de depuración
         return jsonify({"error": "No se pudo conectar al SAM"})
+
+
+@app.route('/add_machine', methods=['POST'])
+async def add_machine():
+    data = await request.get_json()
+    conn = await asyncpg.connect(**db_config)
+    query = '''INSERT INTO maquina(nombre, ubicacion, descripcion, sensores)
+               VALUES($1, $2, $3, $4) RETURNING id;'''
+    values = (data['nombre'], data['ubicacion'], data['descripcion'], data['sensores'])
+    new_machine_id = await conn.fetchval(query, *values)
+    await conn.close()
+    return jsonify({"new_machine_id": new_machine_id}), 201
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
