@@ -7,11 +7,7 @@ if [ "$1" = "build" ]; then
 elif [ "$1" = "start" ]; then
   sudo docker-compose up -d
 elif [ "$1" = "stop" ]; then
-  if [ -z "$2" ]; then
-    echo "Uso: sudo bash run.sh stop {parametro}"
-  else
-    sudo docker stop cems_container_$2
-  fi
+  sudo docker-compose stop
 elif [ "$1" = "down" ]; then
   sudo docker-compose down
 else

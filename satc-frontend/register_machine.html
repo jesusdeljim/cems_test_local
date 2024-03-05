@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>REGISTRO DE MÁQUINA</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+    <h1>Sistema de Adquisicion, Tratamiento y Comunicación de Datos</h1>
+    <script src="app.js"></script>
+    <!-- Aquí irán más elementos de tu interfaz de usuario -->
+    <div class="sidebar">
+        <a href="index.html" id="home">Inicio</a>
+        <a href="register_machine.html" id="add-machine">Añadir nueva máquina</a>
+        <a href="maquinas.html" id="machines">Máquinas</a>
+        <!-- Más opciones aquí -->
+    </div>
+    <div class="content">
+        <form id="machine-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="ubicacion">Ubicación:</label>
+            <input type="text" id="ubicacion" name="ubicacion" required><br><br>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea><br><br>
+
+            <label>Sensores:</label><br>
+            <div id="sensores-container">
+            </div>
+            <button type="button" id="add-sensor-btn">Añadir nuevo sensor</button><br><br>
+        
+            <input type="submit" value="Registrar Máquina">
+        </form>
+    </div>
+</body>
+</html>

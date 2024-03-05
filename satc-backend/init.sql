@@ -10,8 +10,7 @@ CREATE TABLE maquina (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(255),
     ubicacion VARCHAR(255),
-    descripcion TEXT,
-    sensores INTEGER[]  -- Lista de IDs de los sensores asociados con la máquina
+    descripcion TEXT
 );
 
 -- Tabla para los sensores

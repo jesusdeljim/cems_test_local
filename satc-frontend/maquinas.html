@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Máquinas Registradas</title>
+</head>
+<body>
+    <h1>Máquinas Registradas</h1>
+    <div id="maquinas-container">
+        <!-- Aquí se mostrarán las máquinas y sus sensores -->
+    </div>
+
+    <script>
+        // Script para obtener los datos de las máquinas y sus sensores
+        // y mostrarlos en la página
+        async function fetchMachines() {
+            try {
+                const response = await fetch('/api/get_machines');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const machines = await response.json();
+                // Aquí puedes procesar y mostrar los datos de las máquinas
+                console.log(machines);
+            } catch (error) {
+                console.error('Error al obtener las máquinas:', error);
+            }
+        }
+
+        // Llamar a la función al cargar la página
+        document.addEventListener('DOMContentLoaded', fetchMachines);
+    </script>
+</body>
+</html>
